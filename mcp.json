@@ -17,8 +17,8 @@
   },
   "tools": [
     {
-      "name": "league_of_legends_mock_match",
-      "description": "Mock match between two League of Legends players with detailed statistics and match progression",
+      "name": "league_of_legends_summoner_vs_match",
+      "description": "Simulate a League of Legends mock match between two summoners with detailed statistics and match progression",
       "parameters": {
         "uidA": {
           "type": "string",
@@ -42,15 +42,15 @@
         },
         "lang": {
           "type": "string",
-          "description": "Language for the simulation (EN, 한국어, 繁體中文, 日本語, ESPAÑOL, বাংলা, ਪੰਜਾবী)",
+          "description": "Language for the simulation (EN, 한국어, 繁體中文, 日本語, ESPAÑOL, বাংলা, ਪੰਜਾਬੀ)",
           "default": "EN"
         }
       },
-      "returns": "Detailed mock match simulation with summoner statistics from last 10 games and 10-phase match progression"
+      "returns": "Detailed match simulation with summoner statistics from last 10 games and 10-phase match progression"
     },
     {
-      "name": "predict_league_of_legends_match",
-      "description": "Predict the outcome of a League of Legends match between two players",
+      "name": "lol_summoner_mock_battle",
+      "description": "Create a League of Legends mock battle simulation between two summoners",
       "parameters": {
         "summoner1_id": {
           "type": "string",
@@ -78,11 +78,11 @@
           "default": "ENGLISH"
         }
       },
-      "returns": "Match prediction with detailed analysis and simulation"
+      "returns": "Complete battle simulation with stats and match progression"
     },
     {
-      "name": "league_of_legends_who_will_win",
-      "description": "Determine who will win between two League of Legends players",
+      "name": "league_summoner_comparison",
+      "description": "Compare two League of Legends summoners and simulate their matchup",
       "parameters": {
         "player1_riot_id": {
           "type": "string",
@@ -110,11 +110,11 @@
           "default": "EN"
         }
       },
-      "returns": "Winner prediction with detailed comparison and mock match simulation"
+      "returns": "Detailed comparison and mock match simulation"
     },
     {
-      "name": "league_of_legends_world_championship",
-      "description": "Simulate a League of Legends World Championship style match between two players",
+      "name": "summoners_rift_simulation",
+      "description": "Run a Summoner's Rift simulation between two League of Legends players",
       "parameters": {
         "riot_id_a": {
           "type": "string",
@@ -142,11 +142,11 @@
           "default": "EN"
         }
       },
-      "returns": "Full World Championship style match simulation with phase-by-phase breakdown"
+      "returns": "Full Summoner's Rift match simulation with phase-by-phase breakdown"
     },
     {
-      "name": "league_of_legends_vs_match",
-      "description": "League of Legends vs match simulation between two players",
+      "name": "lol_player_vs_player_match",
+      "description": "Generate a League of Legends player vs player match simulation",
       "parameters": {
         "first_summoner_id": {
           "type": "string",
@@ -174,11 +174,11 @@
           "default": "EN"
         }
       },
-      "returns": "Complete vs match simulation with statistics and battle progression"
+      "returns": "Complete PvP match simulation with statistics and battle progression"
     },
     {
-      "name": "league_of_legends_next_match",
-      "description": "Predict the next League of Legends match outcome between two players",
+      "name": "league_match_predictor",
+      "description": "Predict the outcome of a League of Legends match between two summoners",
       "parameters": {
         "summoner_a_id": {
           "type": "string",
@@ -206,7 +206,7 @@
           "default": "ENGLISH"
         }
       },
-      "returns": "Next match prediction with detailed analysis and simulation"
+      "returns": "Match prediction with detailed analysis and simulation"
     }
   ],
   "requirements": [
@@ -214,11 +214,19 @@
     "requests>=2.28.0"
   ],
   "python_version": ">=3.10",
-  "configuration": {
-    "debug": {
-      "type": "boolean",
-      "description": "Enable debug mode for detailed logging",
-      "default": false
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "debug": {
+        "type": "boolean",
+        "description": "Enable debug mode for detailed logging",
+        "default": false
+      },
+      "lol_api_url": {
+        "type": "string",
+        "description": "Base URL for League of Legends API",
+        "default": "https://1tier.xyz"
+      }
     }
   },
   "permissions": {
