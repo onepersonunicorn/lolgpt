@@ -10,7 +10,7 @@ parser = argparse.ArgumentParser(description="League of Legends Mock Match MCP S
 parser.add_argument("--debug", action="store_true", help="Enable debug mode")
 args = parser.parse_args()
 
-mcp = FastMCP("lol_mock_match")
+mcp = FastMCP("lolgpt")
 
 # API base URL
 LOL_API_URL = os.getenv("LOL_API_URL", "https://1tier.xyz")
