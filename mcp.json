@@ -219,11 +219,6 @@
       "type": "boolean",
       "description": "Enable debug mode for detailed logging",
       "default": false
-    },
-    "lol_api_url": {
-      "type": "string",
-      "description": "Base URL for League of Legends API",
-      "default": "https://1tier.xyz"
     }
   },
   "permissions": {
