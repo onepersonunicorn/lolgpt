@@ -34,7 +34,7 @@ This Model Context Protocol (MCP) server provides comprehensive League of Legend
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/onepersonunicorn/lolgpt.git
-   cd lol-mock-match-mcp
+   cd lolgpt
    ```
 
 2. **Install dependencies**:
