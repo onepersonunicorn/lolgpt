@@ -132,17 +132,7 @@ Phase 6: Hide on bush has destroyed a turret.
 Phase 7: Zeus Quadrakill!
 Phase 8: Hide on bush is legendary!
 Phase 9: Hide on bush has destroyed a inhibitor.
-Phase 9: Hide on bush victory!
-
-## Configuration
-
-### Environment Variables
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `LOL_API_URL` | Base URL for League of Legends API | `https://1tier.xyz` |
-| `LOL_DEFAULT_LANGUAGE` | Default language for simulations | `EN` |
-| `LOL_API_TIMEOUT` | API request timeout in seconds | `30` |
+Phase 10: Hide on bush victory!
 
 ### Smithery Configuration
 
@@ -176,26 +166,9 @@ The server integrates with the 1tier.xyz API endpoint which provides:
 - **Multi-language Support**: Localized simulation text
 - **Real-time Data**: Current summoner performance metrics
 
-## Error Handling
-
-The server includes comprehensive error handling for:
-
-- **Network Issues**: Connection timeouts and API failures
-- **Invalid Parameters**: Missing or incorrect summoner IDs/tags
-- **API Rate Limits**: Graceful handling of rate limit responses
-- **Data Parsing**: JSON parsing and validation errors
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License
 
 ## Disclaimer
 
@@ -211,7 +184,6 @@ For issues and questions:
 
 - **Riot Games** for League of Legends
 - **1tier.xyz** for providing the API infrastructure
-- **MCP Community** for the Model Context Protocol framework
 
 ---
 
