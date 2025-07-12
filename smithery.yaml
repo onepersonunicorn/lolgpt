@@ -1,0 +1,40 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      debug:
+        type: boolean
+        description: "Enable debug mode for detailed logging"
+        default: false
+      apiUrl:
+        type: string
+        description: "League of Legends API endpoint URL"
+        default: "https://1tier.xyz"
+  language:
+        type: string
+        description: "Default language for match simulations"
+        default: "EN"
+        enum: ["EN", "ENGLISH", "한국어", "繁體中文", "日本語", "ESPAÑOL", "বাংলা", "ਪੰਜਾਬੀ"]
+  timeout:
+    type: number
+    description: "API request timeout in seconds"
+    default: 30
+    minimum: 5
+    maximum: 120
+  commandFunction: |
+    (config) => ({
+      command: 'python3',
+      args: ['main.py'].concat(config.debug ? ['--debug'] : []),
+      env: {
+        LOL_API_URL: config.apiUrl || "https://1tier.xyz",
+        LOL_DEFAULT_LANGUAGE: config.language || "EN",
+        LOL_API_TIMEOUT: config.timeout || "30"
+      }
+    })
+  exampleConfig:
+    debug: false
+    apiUrl: "https://1tier.xyz"
+    language: "EN"
+    timeout: 30

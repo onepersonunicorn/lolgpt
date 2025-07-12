@@ -1,0 +1,34 @@
+{
+  "name": "@onepersonunicorn/lolgpt",
+  "version": "1.0.0",
+  "description": "AI-powered League of Legends professional esports match predictor and summoner analysis tool. Predict outcomes for T1, Faker, Zeus, and other pro players with advanced statistical modeling.",
+  "main": "main.py",
+  "scripts": {
+    "start": "python3 main.py",
+    "dev": "python3 main.py --debug",
+    "postinstall": "python3 -m pip install --user -r requirements.txt || pip3 install --user -r requirements.txt || echo 'Warning: Could not install Python dependencies automatically. Please run: pip install fastmcp requests'"
+  },
+  "files": [
+    "main.py",
+    "requirements.txt",
+    "smithery.yaml",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onepersonunicorn/lolgpt.git"
+  },
+  "keywords": ["mcp", "league-of-legends", "lol", "summoner", "mock-match", "simulation", "esports", "gaming", "riot-games", "summoners-rift", "prediction", "pvp", "comparison", "professional-gaming", "t1", "faker", "zeus", "lck", "lcs", "worlds", "msi", "pro-player", "esports-analytics", "competitive-lol", "team-analysis", "player-stats", "tournament-prediction"],
+  "author": "lolGPT Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/onepersonunicorn/lolgpt/issues"
+  },
+  "homepage": "https://1tier.xyz",
+  "engines": {
+    "python": ">=3.10"
+  },
+  "peerDependencies": {
+    "python3": ">=3.10"
+  }
+}
