@@ -96,10 +96,6 @@ async def league_of_legends_summoner_vs_match(
 
 **Phase 10:** {summoners.get('p10', 'Loading...')}
 
-**🏆 Final Results:**
-• Summoner A Result: {summoners.get('resultA', 'Calculating...')}
-• Summoner B Result: {summoners.get('resultB', 'Calculating...')}
-"""
             return result
         else:
             return f"Error: Failed to fetch match simulation (Status: {response.status_code})"

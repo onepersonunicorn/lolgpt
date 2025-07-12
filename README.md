@@ -132,10 +132,7 @@ Phase 6: Hide on bush has destroyed a turret.
 Phase 7: Zeus Quadrakill!
 Phase 8: Hide on bush is legendary!
 Phase 9: Hide on bush has destroyed a inhibitor.
-
-🏆 Final Results:
-• Hide on bush Result: Victory
-• Zeus Result: Defeat
+Phase 9: Hide on bush victory!
 
 ## Configuration
 
