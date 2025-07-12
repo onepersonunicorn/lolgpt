@@ -1,4 +1,5 @@
 # League of Legends Mock Match MCP
+[![smithery badge](https://smithery.ai/badge/@onepersonunicorn/lolgpt)](https://smithery.ai/server/@onepersonunicorn/lolgpt)
 
 🎮 **AI-powered League of Legends mock match simulator and summoner comparison tool**
 
@@ -23,6 +24,14 @@ This Model Context Protocol (MCP) server provides comprehensive League of Legend
 - Punjabi (ਪੰਜਾਬੀ)
 
 ## Installation
+
+### Installing via Smithery
+
+To install lolgpt for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@onepersonunicorn/lolgpt):
+
+```bash
+npx -y @smithery/cli install @onepersonunicorn/lolgpt --client claude
+```
 
 ### Prerequisites
 
