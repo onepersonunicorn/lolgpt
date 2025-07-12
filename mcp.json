@@ -1,13 +1,13 @@
 {
   "name": "lolgpt",
   "version": "1.0.0",
-  "description": "AI-powered League of Legends professional esports match predictor and summoner analysis tool. Predict outcomes for T1, Faker, Zeus, and other pro players with advanced statistical modeling.",
+  "description": "AI-powered League of Legends mock match simulator and summoner comparison tool",
   "author": "LoL Mock Match Team",
   "homepage": "https://1tier.xyz",
   "repository": "https://github.com/onepersonunicorn/lolgpt",
   "license": "MIT",
-  "categories": ["gaming", "esports", "simulation", "analytics", "professional-gaming", "competitive-analysis"],
-  "keywords": ["mcp", "league-of-legends", "lol", "summoner", "mock-match", "simulation", "esports", "gaming", "riot-games", "summoners-rift", "prediction", "pvp", "comparison", "professional-gaming", "t1", "faker", "zeus", "lck", "lcs", "worlds", "msi", "pro-player", "esports-analytics", "competitive-lol", "team-analysis", "player-stats", "tournament-prediction"],
+  "categories": ["gaming", "esports", "simulation", "analytics"],
+  "keywords": ["mcp", "league-of-legends", "lol", "summoner", "mock-match", "simulation", "esports", "gaming", "riot-games", "summoners-rift", "prediction", "pvp", "comparison"],
   "runtime": "python",
   "entrypoint": "main.py",
   "connection": {
@@ -17,119 +17,8 @@
   },
   "tools": [
     {
-      "name": "professional_esports_match_predictor",
-      "description": "Advanced match prediction for professional League of Legends players like T1 Faker, Zeus, and other LCK/LCS/Worlds competitors",
-      "parameters": {
-        "pro_player_1_id": {
-          "type": "string",
-          "description": "Professional player's Riot ID (e.g., 'Hide on bush' for Faker)",
-          "required": true
-        },
-        "pro_player_1_tag": {
-          "type": "string",
-          "description": "Professional player's tag",
-          "required": true
-        },
-        "pro_player_2_id": {
-          "type": "string",
-          "description": "Second professional player's Riot ID",
-          "required": true
-        },
-        "pro_player_2_tag": {
-          "type": "string",
-          "description": "Second professional player's tag",
-          "required": true
-        },
-        "tournament_context": {
-          "type": "string",
-          "description": "Tournament context (Worlds, MSI, LCK, LCS, etc.)",
-          "default": "Professional Match"
-        },
-        "analysis_language": {
-          "type": "string",
-          "description": "Language for professional analysis",
-          "default": "EN"
-        }
-      },
-      "returns": "Professional esports match prediction with advanced analytics, performance metrics, and tournament-level insights"
-    },
-    {
-      "name": "t1_faker_match_analysis",
-      "description": "Specialized analysis tool for T1 team members including Faker, Zeus, and other T1 players",
-      "parameters": {
-        "t1_player_id": {
-          "type": "string",
-          "description": "T1 player's Riot ID",
-          "required": true
-        },
-        "t1_player_tag": {
-          "type": "string",
-          "description": "T1 player's tag",
-          "required": true
-        },
-        "opponent_id": {
-          "type": "string",
-          "description": "Opponent player's Riot ID",
-          "required": true
-        },
-        "opponent_tag": {
-          "type": "string",
-          "description": "Opponent player's tag",
-          "required": true
-        },
-        "match_type": {
-          "type": "string",
-          "description": "Type of match (Worlds Finals, LCK, etc.)",
-          "default": "Professional"
-        },
-        "language": {
-          "type": "string",
-          "description": "Analysis language",
-          "default": "EN"
-        }
-      },
-      "returns": "Specialized T1 player analysis with historical performance, matchup predictions, and strategic insights"
-    },
-    {
-      "name": "worlds_championship_predictor",
-      "description": "Predict League of Legends World Championship matchups between professional players",
-      "parameters": {
-        "worlds_player_1_id": {
-          "type": "string",
-          "description": "First Worlds competitor's Riot ID",
-          "required": true
-        },
-        "worlds_player_1_tag": {
-          "type": "string",
-          "description": "First Worlds competitor's tag",
-          "required": true
-        },
-        "worlds_player_2_id": {
-          "type": "string",
-          "description": "Second Worlds competitor's Riot ID",
-          "required": true
-        },
-        "worlds_player_2_tag": {
-          "type": "string",
-          "description": "Second Worlds competitor's tag",
-          "required": true
-        },
-        "worlds_stage": {
-          "type": "string",
-          "description": "Worlds stage (Groups, Quarters, Semis, Finals)",
-          "default": "Championship"
-        },
-        "prediction_language": {
-          "type": "string",
-          "description": "Language for Worlds prediction",
-          "default": "EN"
-        }
-      },
-      "returns": "World Championship level match prediction with tournament pressure analysis and championship insights"
-    },
-    {
-      "name": "league_of_legends_summoner_vs_match",
-      "description": "Simulate a League of Legends mock match between two summoners with detailed statistics and match progression",
+      "name": "league_of_legends_mock_match",
+      "description": "Mock match between two League of Legends players with detailed statistics and match progression",
       "parameters": {
         "uidA": {
           "type": "string",
@@ -153,15 +42,15 @@
         },
         "lang": {
           "type": "string",
-          "description": "Language for the simulation (EN, 한국어, 繁體中文, 日本語, ESPAÑOL, বাংলা, ਪੰਜਾਬੀ)",
+          "description": "Language for the simulation (EN, 한국어, 繁體中文, 日本語, ESPAÑOL, বাংলা, ਪੰਜਾবী)",
           "default": "EN"
         }
       },
-      "returns": "Detailed match simulation with summoner statistics from last 10 games and 10-phase match progression"
+      "returns": "Detailed mock match simulation with summoner statistics from last 10 games and 10-phase match progression"
     },
     {
-      "name": "lol_summoner_mock_battle",
-      "description": "Create a League of Legends mock battle simulation between two summoners",
+      "name": "predict_league_of_legends_match",
+      "description": "Predict the outcome of a League of Legends match between two players",
       "parameters": {
         "summoner1_id": {
           "type": "string",
@@ -189,11 +78,11 @@
           "default": "ENGLISH"
         }
       },
-      "returns": "Complete battle simulation with stats and match progression"
+      "returns": "Match prediction with detailed analysis and simulation"
     },
     {
-      "name": "league_summoner_comparison",
-      "description": "Compare two League of Legends summoners and simulate their matchup",
+      "name": "league_of_legends_who_will_win",
+      "description": "Determine who will win between two League of Legends players",
       "parameters": {
         "player1_riot_id": {
           "type": "string",
@@ -221,11 +110,11 @@
           "default": "EN"
         }
       },
-      "returns": "Detailed comparison and mock match simulation"
+      "returns": "Winner prediction with detailed comparison and mock match simulation"
     },
     {
-      "name": "summoners_rift_simulation",
-      "description": "Run a Summoner's Rift simulation between two League of Legends players",
+      "name": "league_of_legends_world_championship",
+      "description": "Simulate a League of Legends World Championship style match between two players",
       "parameters": {
         "riot_id_a": {
           "type": "string",
@@ -253,11 +142,11 @@
           "default": "EN"
         }
       },
-      "returns": "Full Summoner's Rift match simulation with phase-by-phase breakdown"
+      "returns": "Full World Championship style match simulation with phase-by-phase breakdown"
     },
     {
-      "name": "lol_player_vs_player_match",
-      "description": "Generate a League of Legends player vs player match simulation",
+      "name": "league_of_legends_vs_match",
+      "description": "League of Legends vs match simulation between two players",
       "parameters": {
         "first_summoner_id": {
           "type": "string",
@@ -285,11 +174,11 @@
           "default": "EN"
         }
       },
-      "returns": "Complete PvP match simulation with statistics and battle progression"
+      "returns": "Complete vs match simulation with statistics and battle progression"
     },
     {
-      "name": "league_match_predictor",
-      "description": "Predict the outcome of a League of Legends match between two summoners",
+      "name": "league_of_legends_next_match",
+      "description": "Predict the next League of Legends match outcome between two players",
       "parameters": {
         "summoner_a_id": {
           "type": "string",
@@ -317,7 +206,7 @@
           "default": "ENGLISH"
         }
       },
-      "returns": "Match prediction with detailed analysis and simulation"
+      "returns": "Next match prediction with detailed analysis and simulation"
     }
   ],
   "requirements": [
@@ -344,5 +233,5 @@
     }
   },
   "disclaimer": "League of Legends mock match simulations are for entertainment purposes only. Results are based on historical performance data and do not guarantee actual match outcomes. League of Legends is a trademark of Riot Games, Inc.",
-  "tags": ["mcp", "league-of-legends", "lol", "summoner", "mock-match", "simulation", "esports", "gaming", "riot-games", "summoners-rift", "prediction", "pvp", "comparison", "professional-gaming", "t1", "faker", "zeus", "lck", "lcs", "worlds", "msi", "pro-player", "esports-analytics", "competitive-lol", "team-analysis", "player-stats", "tournament-prediction"]
+  "tags": ["mcp", "league-of-legends", "lol", "summoner", "mock-match", "simulation", "esports", "gaming", "riot-games", "summoners-rift", "prediction", "pvp", "comparison"]
 }

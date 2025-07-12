@@ -96,6 +96,7 @@ async def league_of_legends_summoner_vs_match(
 
 **Phase 10:** {summoners.get('p10', 'Loading...')}
 
+"""
             return result
         else:
             return f"Error: Failed to fetch match simulation (Status: {response.status_code})"
@@ -126,7 +127,7 @@ async def lol_summoner_mock_battle(
     Returns:
         Complete battle simulation with stats and match progression
     """
-    return await league_of_legends_summoner_vs_match(
+                return await league_of_legends_mock_match(
         summoner1_id, summoner1_tag, summoner2_id, summoner2_tag, language
     )
 
