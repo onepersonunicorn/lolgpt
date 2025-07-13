@@ -1,7 +1,7 @@
 # League of Legends Mock Match MCP
 [![smithery badge](https://smithery.ai/badge/@onepersonunicorn/lolgpt)](https://smithery.ai/server/@onepersonunicorn/lolgpt)
 
-🎮 **AI-powered League of Legends mock match simulator and summoner comparison tool**
+🦹 **AI-powered League of Legends mock match simulator and summoner comparison tool**
 
 This Model Context Protocol (MCP) server provides comprehensive League of Legends summoner analysis and mock match simulations based on historical performance data from the last 10 games.
 
