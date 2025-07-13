@@ -4,16 +4,27 @@ import argparse
 import json
 import requests
 from datetime import datetime
+import asyncio
+import logging
 from mcp.server.fastmcp import FastMCP
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 parser = argparse.ArgumentParser(description="League of Legends Mock Match MCP Server")
 parser.add_argument("--debug", action="store_true", help="Enable debug mode")
 args = parser.parse_args()
 
+if args.debug:
+    logging.getLogger().setLevel(logging.DEBUG)
+
 mcp = FastMCP("lolgpt")
 
 # API base URL
 LOL_API_URL = os.getenv("LOL_API_URL", "https://1tier.xyz")
+
+logger.info(f"Starting LoL Mock Match MCP Server with API URL: {LOL_API_URL}")
 
 @mcp.tool()
 async def league_of_legends_summoner_vs_match(
@@ -232,4 +243,9 @@ async def league_match_predictor(
     )
 
 if __name__ == "__main__":
-    mcp.run()
+    try:
+        logger.info("Starting LoL Mock Match MCP Server...")
+        mcp.run()
+    except Exception as e:
+        logger.error(f"Failed to start MCP server: {e}")
+        sys.exit(1)
