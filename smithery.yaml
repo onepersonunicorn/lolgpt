@@ -12,17 +12,17 @@ startCommand:
         type: string
         description: "League of Legends API endpoint URL"
         default: "https://1tier.xyz"
-  language:
+      language:
         type: string
         description: "Default language for match simulations"
         default: "EN"
         enum: ["EN", "ENGLISH", "한국어", "繁體中文", "日本語", "ESPAÑOL", "বাংলা", "ਪੰਜਾਬੀ"]
-  timeout:
-    type: number
-    description: "API request timeout in seconds"
-    default: 30
-    minimum: 5
-    maximum: 120
+      timeout:
+        type: number
+        description: "API request timeout in seconds"
+        default: 30
+        minimum: 5
+        maximum: 120
   commandFunction: |
     (config) => ({
       command: 'python3',
