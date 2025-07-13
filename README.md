@@ -1,7 +1,6 @@
 # League of Legends Mock Match MCP
-[![smithery badge](https://smithery.ai/badge/@onepersonunicorn/lolgpt)](https://smithery.ai/server/@onepersonunicorn/lolgpt)
 
-🦹 **AI-powered League of Legends mock match simulator and summoner comparison tool**
+🎮 **AI-powered League of Legends mock match simulator and summoner comparison tool**
 
 This Model Context Protocol (MCP) server provides comprehensive League of Legends summoner analysis and mock match simulations based on historical performance data from the last 10 games.
 
@@ -24,14 +23,6 @@ This Model Context Protocol (MCP) server provides comprehensive League of Legend
 - Punjabi (ਪੰਜਾਬੀ)
 
 ## Installation
-
-### Installing via Smithery
-
-To install lolgpt for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@onepersonunicorn/lolgpt):
-
-```bash
-npx -y @smithery/cli install @onepersonunicorn/lolgpt --client claude
-```
 
 ### Prerequisites
 
@@ -69,7 +60,7 @@ npx -y @smithery/cli install @onepersonunicorn/lolgpt --client claude
 
 The MCP server provides 6 different tools for various League of Legends simulation needs:
 
-#### 1. `league_of_legends_summoner_vs_match`
+#### `league_of_legends_summoner_vs_match`
 Main tool for comprehensive match simulation.
 
 **Parameters:**
@@ -78,21 +69,6 @@ Main tool for comprehensive match simulation.
 - `uidB` (required): Riot ID of second summoner
 - `tagB` (required): Tag of second summoner
 - `lang` (optional): Language for simulation (default: "EN")
-
-#### 2. `lol_summoner_mock_battle`
-Simplified battle simulation interface.
-
-#### 3. `league_summoner_comparison`
-Compare two summoners with detailed analysis.
-
-#### 4. `summoners_rift_simulation`
-Focused on Summoner's Rift match simulation.
-
-#### 5. `lol_player_vs_player_match`
-PvP-focused match simulation.
-
-#### 6. `league_match_predictor`
-Match outcome prediction tool.
 
 ### Example Usage
 
