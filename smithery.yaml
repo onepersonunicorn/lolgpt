@@ -11,7 +11,7 @@ startCommand:
       apiUrl:
         type: string
         description: "League of Legends API endpoint URL"
-        default: "https://1tier.xyz"
+        default: "https://1tier.xyz/vs4"
       language:
         type: string
         description: "Default language for match simulations"
@@ -22,11 +22,11 @@ startCommand:
       command: 'python3',
       args: ['main.py'].concat(config.debug ? ['--debug'] : []),
       env: {
-        LOL_API_URL: config.apiUrl || "https://1tier.xyz",
+        LOL_API_URL: config.apiUrl || "https://1tier.xyz/vs4",
         LOL_DEFAULT_LANGUAGE: config.language || "EN",
       }
     })
   exampleConfig:
     debug: false
-    apiUrl: "https://1tier.xyz"
+    apiUrl: "https://1tier.xyz/vs4"
     language: "EN"

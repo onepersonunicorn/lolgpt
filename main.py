@@ -22,7 +22,7 @@ if args.debug:
 mcp = FastMCP("lolgpt")
 
 # API base URL
-LOL_API_URL = os.getenv("LOL_API_URL", "https://1tier.xyz")
+LOL_API_URL = os.getenv("LOL_API_URL", "https://1tier.xyz/vs4")
 
 logger.info(f"Starting LoL Mock Match MCP Server with API URL: {LOL_API_URL}")
 
