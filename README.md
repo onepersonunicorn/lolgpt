@@ -83,7 +83,7 @@ await league_of_legends_summoner_vs_match(
 
 ### Example Usage
 
-![conversations](img/lolgpt_MCP.gif)
+![conversations](img/lolGPT_MCP.gif)
 
 ### Sample Output
 
