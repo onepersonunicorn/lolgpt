@@ -125,6 +125,8 @@ Phase 10: Hide on bush victory!
 
 The server supports Smithery configuration via `smithery.yaml`:
 
+```
+
 ```yaml
 startCommand:
   type: stdio
