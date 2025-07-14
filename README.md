@@ -70,10 +70,8 @@ Main tool for comprehensive match simulation.
 - `tagB` (required): Tag of second summoner
 - `lang` (optional): Language for simulation (default: "EN")
 
-### Example Usage
-
+### Example API call
 ```python
-# Example API call
 await league_of_legends_summoner_vs_match(
     uidA="Hide on bush",
     tagA="KR1", 
@@ -82,6 +80,10 @@ await league_of_legends_summoner_vs_match(
     lang="EN"
 )
 ```
+
+### Example Usage
+
+![conversations](img/cryptoweatherMCP_chat.gif)
 
 ### Sample Output
 
