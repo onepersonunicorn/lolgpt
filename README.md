@@ -88,7 +88,7 @@ await league_of_legends_summoner_vs_match(
 ### Sample Output
 
 ```
-🎮 **League of Legends Mock Match Simulation**
+⚔️ **League of Legends Mock Match Simulation**
 ════════════════════════════════════════════
 
 📊 Summoner A (PlayerOne#KR1) - Last 10 Games Statistics:
