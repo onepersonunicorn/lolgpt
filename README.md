@@ -1,4 +1,4 @@
-# League of Legends Mock Match MCP
+# League of Legends Mock Match Predictor
 
 ⚔️ **AI-powered League of Legends mock match simulator and summoner comparison tool**
 
