@@ -1,209 +1,98 @@
-# League of Legends Mock Match Predictor
+# LoLGPT MCP — League of Legends Mock Match Simulator
 
-⚔️ **AI-powered League of Legends mock match simulator and summoner comparison tool**
+⚔️ **"Who would win — you or your friend?"**
 
-This Model Context Protocol (MCP) server provides comprehensive League of Legends summoner analysis and mock match simulations based on historical performance data from the last 10 games.
+LoLGPT(롤지피티) is a remote MCP server that turns real League of Legends match
+history into entertainment. Give it two Riot IDs and it simulates a full mock
+match with a phase-by-phase broadcast; give it one and it profiles your
+playstyle like a personality test.
 
-## Features
+Powered by live Riot Games data (last 10 games: KDA, damage, win rate) via the
+[1tier.xyz](https://1tier.xyz) backend. Supports 9 languages.
 
-- **🔍 Summoner Analysis**: Get detailed statistics including KDA, damage dealt, and win rates
-- **⚔️ Mock Match Simulation**: AI-powered 10-phase match progression simulation
-- **🌍 Multi-language Support**: Available in 7 languages
-- **📊 Performance Comparison**: Side-by-side summoner comparisons
-- **🎯 Match Prediction**: Outcome prediction based on historical data
+## Tools
 
-## Supported Languages
+| Tool | What it does |
+|---|---|
+| `league_of_legends_summoner_vs_match` | Fetches both summoners' recent stats and generates a 9-phase Summoner's Rift mock match with a winner. Params: `uidA/tagA/uidB/tagB`, `lang` |
+| `analyze_summoner_playstyle` | Personality-style play type, signature champion, and champions that fit or clash with your style. Params: `uid/tag`, `lang` |
+| `get_mock_match_win_rankings` | Global leaderboard of accumulated mock-match wins. Params: `top` (1-20) |
 
-- English (EN/ENGLISH)
-- Korean (한국어)
-- Traditional Chinese (繁體中文)
-- Japanese (日本語)
-- Spanish (ESPAÑOL)
-- Bengali (বাংলা)
-- Punjabi (ਪੰਜਾਬੀ)
-- Simplified Chinese (簡體中文)
-- Vietnamese (Tiếng Việt)
+Languages: `EN, 한국어, 繁體中文, 簡體中文, 日本語, ESPAÑOL, বাংলা, ਪੰਜਾਬੀ, Tiếng Việt`
 
-## Installation
+**Example prompts**
 
-### Prerequisites
+> "Hide on bush#KR1이랑 Zeus#KR1 모의 경기 돌려줘"
+> "내 계정 GamerTag#NA1 플레이 스타일 분석해줘"
+> "롤지피티 모의전 승리 랭킹 보여줘"
 
-- Python 3.10 or higher
-- pip package manager
-
-### Setup
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/onepersonunicorn/lolgpt.git
-   cd lolgpt
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Set up environment variables** (optional):
-   ```bash
-   export LOL_API_URL="https://1tier.xyz"
-   export LOL_DEFAULT_LANGUAGE="EN"
-   export LOL_API_TIMEOUT="30"
-   ```
-
-4. **Run the server**:
-   ```bash
-   # stdio mode (local MCP clients: Claude Desktop, Cursor, etc.)
-   python main.py
-
-   # Streamable HTTP mode (remote hosting) — activated when PORT is set
-   PORT=8000 python main.py
-   # → MCP endpoint: http://localhost:8000/mcp
-   # → health check:  http://localhost:8000/health
-   ```
-
-## Remote Hosting (Render + Kakao PlayMCP)
-
-This repo includes `render.yaml`, so it can be deployed to [Render](https://render.com)'s free plan as a Blueprint:
-
-1. Push this repo to GitHub, then in Render: **New + → Blueprint →** select this repo → deploy.
-2. Your remote MCP endpoint will be `https://<your-app>.onrender.com/mcp` (Streamable HTTP, stateless).
-3. Register that URL in MCP clients (Claude custom connectors, Kakao PlayMCP developer console, etc.).
-
-**Keeping the free instance awake**: Render free services spin down after 15 minutes of inactivity (cold start 30–60s). Run the bundled keep-alive script on any always-on machine:
+## Run locally
 
 ```bash
-python keepalive.py https://<your-app>.onrender.com
+pip install -r requirements.txt
+
+# stdio (Claude Desktop 등 로컬 클라이언트)
+python main.py
+
+# Streamable HTTP — PORT 설정 시 활성화
+PORT=8000 python main.py
+# → MCP endpoint: http://localhost:8000/mcp
+# → health check:  http://localhost:8000/health (GET / 도 200 응답)
 ```
 
-As a backup (e.g. while your laptop sleeps), register the same `/health` URL on a free cron service such as [cron-job.org](https://cron-job.org) at a 10-minute interval.
+MCP Inspector로 점검: `npx @modelcontextprotocol/inspector` → Streamable HTTP →
+`http://localhost:8000/mcp`
 
-## Usage
+## Deploy — PlayMCP in KC (Git 소스 빌드)
 
-### Available Tools
+이 저장소는 KC 요건에 맞춰져 있습니다: 루트 `Dockerfile`이 **8000 포트에서
+Streamable HTTP로 listen**하고(`ENV PORT=8000`), `GET /`·`GET /health`가 200을
+반환합니다. stateless(no session)라 재시작·스케일링에 안전합니다.
 
-#### `analyze_summoner_playstyle`
-Analyzes a single summoner's playstyle: play type, signature champion, and champion recommendations.
+1. https://playmcp.kakaocloud.io → **+ 새 MCP 서버 등록 → Git 소스 빌드**
+2. 입력값
+   - Git URL: `https://github.com/onepersonunicorn/lolgpt`
+   - 브랜치: `main` · Dockerfile 경로: `Dockerfile` · PAT: 비움(public)
+   - 환경변수: 불필요 (선택: `LOL_API_URL`, 기본 `https://1tier.xyz`)
+   - 컨테이너 포트: `8000` (기본값)
+3. Status **Active** 확인 → 상세의 **Endpoint URL** 복사 → PlayMCP 콘솔 등록에 사용
 
-**Parameters:**
-- `uid` (required): Riot ID of the summoner
-- `tag` (required): Tagline of the summoner, without `#`
-- `lang` (optional): Output language (default: "EN")
+> 과거 Failed 원인: 이전 Dockerfile(Smithery 생성)이 stdio 전용이라 컨테이너가
+> 포트를 열지 않았음. 현재 Dockerfile로 해결됨.
 
-#### `league_of_legends_summoner_vs_match`
-Main tool for comprehensive match simulation.
+Render 등 다른 PaaS도 동일하게 동작합니다(PaaS가 `PORT`를 주입).
 
-**Parameters:**
-- `uidA` (required): Riot ID of first summoner
-- `tagA` (required): Tag of first summoner  
-- `uidB` (required): Riot ID of second summoner
-- `tagB` (required): Tag of second summoner
-- `lang` (optional): Language for simulation (default: "EN")
+## PlayMCP 등록 정보 (복사용)
 
-### Example API call
-```python
-await league_of_legends_summoner_vs_match(
-    uidA="Hide on bush",
-    tagA="KR1", 
-    uidB="Zeus",
-    tagB="KR1",
-    lang="EN"
-)
-```
+**서비스 설명 (국문)**
 
-### Example Usage
+> ⚔️ 친구와 나, 누가 이길까? — 롤지피티(LoLGPT)
+>
+> 실제 라이엇 전적 데이터(최근 10경기 KDA·딜량·승률)로 두 소환사의 가상 대결을
+> 9단계 실황 중계처럼 시뮬레이션합니다. 소환사명 두 개면 "밴픽부터 넥서스까지"
+> 승부가 갈리고, 하나면 내 플레이 성향(플레이 타입 · 인생 챔피언 · 나와 맞는/
+> 상극인 챔피언)을 성격 테스트처럼 분석해 줍니다.
+>
+> 이런 대화에서 호출됩니다:
+> · "페이커랑 내 계정으로 모의 경기 돌려줘"
+> · "내 소환사명 ○○○#KR1 플레이 스타일 분석해줘"
+> · "모의전 승리 랭킹 1위가 누구야?"
+>
+> 결과는 짧은 마크다운 요약으로 반환되어 대화 흐름을 끊지 않으며, 9개 언어를
+> 지원합니다. 전적 조회를 넘어 "전적으로 노는" 새로운 경험을 제공합니다.
 
-![conversations](img/lolGPT_MCP.gif)
+**Service description (EN)**
 
-### Sample Output
-
-```
-⚔️ **League of Legends Mock Match Simulation**
-════════════════════════════════════════════
-
-📊 Summoner A (PlayerOne#KR1) - Last 10 Games Statistics:
-• Average Kills: 8.2
-• Average Assists: 12.5
-• Average Deaths: 4.1
-• Average KDA: 5.05
-• Average Damage Dealt: 28,450
-• Win Rate: 70%
-
-📊 Summoner B (PlayerTwo#NA1) - Last 10 Games Statistics:
-• Average Kills: 6.8
-• Average Assists: 9.2
-• Average Deaths: 5.3
-• Average KDA: 3.02
-• Average Damage Dealt: 22,100
-• Win Rate: 55%
-
-🎯 Mock Match Simulation - Summoner's Rift:
-════════════════════════════════════════════
-
-Phase 1: Welcome to the Snowdown Showdown.
-Phase 2: Thirty seconds until minions spawn.
-Phase 3: Minions have spawned!
-Phase 4: First blood! Zeus has been slain.
-Phase 5: Hide on bush has slain an enemy!
-Phase 6: Hide on bush has destroyed a turret.
-Phase 7: Zeus Quadrakill!
-Phase 8: Hide on bush is legendary!
-Phase 9: Hide on bush has destroyed a inhibitor.
-Phase 10: Hide on bush victory!
-
-### Smithery Configuration
-
-The server supports Smithery configuration via `smithery.yaml`:
-
-```
-
-```yaml
-startCommand:
-  type: stdio
-  configSchema:
-    properties:
-      debug:
-        type: boolean
-        default: false
-      apiUrl:
-        type: string
-        default: "https://1tier.xyz"
-      language:
-        type: string
-        default: "EN"
-      timeout:
-        type: number
-        default: 30
-```
-
-## API Integration
-
-The server integrates with the 1tier.xyz API endpoint which provides:
-
-- **Summoner Statistics**: Last 10 games performance data
-- **Match Simulation**: AI-generated match progression
-- **Multi-language Support**: Localized simulation text
-- **Real-time Data**: Current summoner performance metrics
-
-## License
-
-This project is licensed under the MIT License
+> Turn match history into entertainment. LoLGPT(롤지피티) simulates a mock
+> League of Legends match between any two summoners using their real last-10-
+> games stats (KDA, damage, win rate), narrated phase by phase — or profiles a
+> single summoner's playstyle with a signature champion and champion
+> recommendations. Ask "run a mock match between me and Faker" and get a
+> winner. 9 languages, concise markdown output, stateless remote MCP.
 
 ## Disclaimer
 
-League of Legends mock match simulations are for entertainment purposes only. Results are based on historical performance data and do not guarantee actual match outcomes. League of Legends is a trademark of Riot Games, Inc.
+Mock match simulations are for entertainment purposes only. League of Legends
+is a trademark of Riot Games, Inc. This project is not endorsed by Riot Games.
 
-## Support
-
-For issues and questions:
-- Create an issue on GitHub
-- Contact the development team
-
-## Acknowledgments
-
-- **Riot Games** for League of Legends
-- **1tier.xyz** for providing the API infrastructure
-
----
-
-Made with ❤️ for the League of Legends community
+MIT License

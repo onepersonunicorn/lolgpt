@@ -206,6 +206,56 @@ async def analyze_summoner_playstyle(
         return f"Error: {e}"
 
 
+@mcp.tool(
+    annotations=ToolAnnotations(
+        title="LoL Mock Match Win Rankings",
+        readOnlyHint=True,
+        destructiveHint=False,
+        idempotentHint=True,
+        openWorldHint=True,
+    )
+)
+async def get_mock_match_win_rankings(top: int = 10) -> str:
+    """Shows the global mock-match win leaderboard of LoLGPT(롤지피티).
+
+    Every summoner-vs-summoner mock match simulated on LoLGPT counts toward
+    the winner's total. This returns the current top summoners by accumulated
+    mock-match wins.
+
+    Args:
+        top: How many entries to return (1-20, default 10).
+
+    Returns:
+        Markdown leaderboard with rank, Riot ID, and win count.
+    """
+    n = max(1, min(int(top or 10), 20))
+    try:
+        response = requests.get(f"{LOL_API_URL}/rank", timeout=10)
+        if response.status_code != 200:
+            return f"Error: LoLGPT API returned status {response.status_code}. Please try again."
+        data = response.json()
+        if not data.get("success"):
+            return f"Error: {data.get('error', 'ranking service unavailable')}"
+        rows = data.get("data") or []
+    except requests.exceptions.Timeout:
+        return "Error: LoLGPT API request timed out. Please try again."
+    except (requests.exceptions.RequestException, ValueError) as e:
+        return f"Error: Failed to connect to LoLGPT API - {e}"
+
+    lines = [
+        "## LoLGPT(롤지피티) Mock Match Win Rankings",
+        f"Total ranked summoners: {data.get('total', len(rows)):,}\n",
+    ]
+    for row in rows[:n]:
+        rid = row.get("summonerId", "?")
+        tag = row.get("tag") or ""
+        name = f"{rid}#{tag}" if tag else rid
+        lines.append(f"{row.get('rank')}. **{name}** — {row.get('sumWin')} wins")
+    if not rows:
+        lines.append("No mock matches recorded yet.")
+    return "\n".join(lines)
+
+
 def main() -> None:
     try:
         if os.getenv("PORT") or os.getenv("RENDER"):
