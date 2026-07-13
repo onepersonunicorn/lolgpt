@@ -6,7 +6,7 @@ authors = [
     { name = "lolGPT Team", email = "faker@1tier.xyz" }
 ]
 dependencies = [
-    "fastmcp>=0.1.0",
+    "mcp>=1.10.0",
     "requests>=2.28.0",
 ]
 readme = "README.md"

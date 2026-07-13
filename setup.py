@@ -9,7 +9,7 @@ setup(
     url="https://github.com/onepersonunicorn/lolgpt",
     py_modules=["main"],
     install_requires=[
-        "fastmcp>=0.1.0",
+        "mcp>=1.10.0",
         "requests>=2.28.0",
     ],
     python_requires=">=3.10",

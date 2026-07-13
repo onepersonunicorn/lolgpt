@@ -21,6 +21,8 @@ This Model Context Protocol (MCP) server provides comprehensive League of Legend
 - Spanish (ESPAÑOL)
 - Bengali (বাংলা)
 - Punjabi (ਪੰਜਾਬੀ)
+- Simplified Chinese (簡體中文)
+- Vietnamese (Tiếng Việt)
 
 ## Installation
 
@@ -51,14 +53,42 @@ This Model Context Protocol (MCP) server provides comprehensive League of Legend
 
 4. **Run the server**:
    ```bash
+   # stdio mode (local MCP clients: Claude Desktop, Cursor, etc.)
    python main.py
+
+   # Streamable HTTP mode (remote hosting) — activated when PORT is set
+   PORT=8000 python main.py
+   # → MCP endpoint: http://localhost:8000/mcp
+   # → health check:  http://localhost:8000/health
    ```
+
+## Remote Hosting (Render + Kakao PlayMCP)
+
+This repo includes `render.yaml`, so it can be deployed to [Render](https://render.com)'s free plan as a Blueprint:
+
+1. Push this repo to GitHub, then in Render: **New + → Blueprint →** select this repo → deploy.
+2. Your remote MCP endpoint will be `https://<your-app>.onrender.com/mcp` (Streamable HTTP, stateless).
+3. Register that URL in MCP clients (Claude custom connectors, Kakao PlayMCP developer console, etc.).
+
+**Keeping the free instance awake**: Render free services spin down after 15 minutes of inactivity (cold start 30–60s). Run the bundled keep-alive script on any always-on machine:
+
+```bash
+python keepalive.py https://<your-app>.onrender.com
+```
+
+As a backup (e.g. while your laptop sleeps), register the same `/health` URL on a free cron service such as [cron-job.org](https://cron-job.org) at a 10-minute interval.
 
 ## Usage
 
 ### Available Tools
 
-The MCP server provides 6 different tools for various League of Legends simulation needs:
+#### `analyze_summoner_playstyle`
+Analyzes a single summoner's playstyle: play type, signature champion, and champion recommendations.
+
+**Parameters:**
+- `uid` (required): Riot ID of the summoner
+- `tag` (required): Tagline of the summoner, without `#`
+- `lang` (optional): Output language (default: "EN")
 
 #### `league_of_legends_summoner_vs_match`
 Main tool for comprehensive match simulation.

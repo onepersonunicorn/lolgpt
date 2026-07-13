@@ -1,7 +1,7 @@
 {
   "name": "lolgpt",
-  "version": "1.0.0",
-  "description": "AI-powered League of Legends mock match simulator and summoner comparison tool",
+  "version": "1.1.0",
+  "description": "AI-powered League of Legends mock match simulator and summoner playstyle analyzer",
   "author": "LoL Mock Match Team",
   "homepage": "https://1tier.xyz",
   "repository": "https://github.com/onepersonunicorn/lolgpt",
@@ -15,10 +15,14 @@
     "command": "python",
     "args": ["main.py"]
   },
+  "remote": {
+    "transport": "streamable-http",
+    "note": "Run with PORT env var set to serve Streamable HTTP at /mcp (e.g. on Render). Without PORT, runs as stdio."
+  },
   "tools": [
     {
       "name": "league_of_legends_summoner_vs_match",
-      "description": "Simulate a League of Legends mock match between two summoners with detailed statistics and match progression",
+      "description": "Simulates a mock League of Legends match between two summoners from LoLGPT(롤지피티), based on each summoner's last 10 games",
       "parameters": {
         "uidA": {
           "type": "string",
@@ -26,8 +30,8 @@
           "required": true
         },
         "tagA": {
-          "type": "string", 
-          "description": "Tag of the first summoner",
+          "type": "string",
+          "description": "Tagline of the first summoner, without #",
           "required": true
         },
         "uidB": {
@@ -37,20 +41,42 @@
         },
         "tagB": {
           "type": "string",
-          "description": "Tag of the second summoner", 
+          "description": "Tagline of the second summoner, without #",
           "required": true
         },
         "lang": {
           "type": "string",
-          "description": "Language for the simulation (EN, 한국어, 繁體中文, 日本語, ESPAÑOL, বাংলা, ਪੰਜਾਬੀ)",
+          "description": "Output language (EN, 한국어, 繁體中文, 簡體中文, 日本語, ESPAÑOL, বাংলা, ਪੰਜਾਬੀ, Tiếng Việt)",
           "default": "EN"
         }
       },
-      "returns": "Detailed match simulation with summoner statistics from last 10 games and 10-phase match progression"
+      "returns": "Markdown summary with both summoners' recent stats and a phase-by-phase mock match progression"
+    },
+    {
+      "name": "analyze_summoner_playstyle",
+      "description": "Analyzes a League of Legends summoner's playstyle from LoLGPT(롤지피티): play type, signature champion, and champion recommendations",
+      "parameters": {
+        "uid": {
+          "type": "string",
+          "description": "Riot ID of the summoner",
+          "required": true
+        },
+        "tag": {
+          "type": "string",
+          "description": "Tagline of the summoner, without #",
+          "required": true
+        },
+        "lang": {
+          "type": "string",
+          "description": "Output language (EN, 한국어, 繁體中文, 簡體中文, 日本語, ESPAÑOL, বাংলা, ਪੰਜਾਬੀ, Tiếng Việt)",
+          "default": "EN"
+        }
+      },
+      "returns": "Markdown summary of the summoner's play type, signature champion, and recommended/avoid champions"
     }
   ],
   "requirements": [
-    "fastmcp>=0.1.0",
+    "mcp>=1.10.0",
     "requests>=2.28.0"
   ],
   "python_version": ">=3.10",
