@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/onepersonunicorn-lolgpt-badge.png)](https://mseep.ai/app/onepersonunicorn-lolgpt)
+
 # League of Legends Mock Match Predictor
 
 ⚔️ **AI-powered League of Legends mock match simulator and summoner comparison tool**
