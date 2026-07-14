@@ -71,7 +71,7 @@ async def league_of_legends_summoner_vs_match(
     tagB: str,
     lang: str = "EN",
 ) -> str:
-    """Simulates a mock League of Legends match between two summoners from LoLGPT(롤지피티).
+    """롤GPT(LoLGPT) 서비스의 툴로, 두 소환사 간의 League of Legends 가상 대결(mock match)을 시뮬레이션합니다.
 
     Fetches each summoner's average stats from their last 10 games via the
     Riot Games API (kills, deaths, assists, KDA, damage, win rate) and
@@ -158,7 +158,7 @@ async def analyze_summoner_playstyle(
     tag: str,
     lang: str = "EN",
 ) -> str:
-    """Analyzes a League of Legends summoner's playstyle from LoLGPT(롤지피티).
+    """롤GPT(LoLGPT) 서비스의 툴로, League of Legends 소환사의 플레이 스타일을 분석합니다.
 
     Based on the summoner's recent match history, returns a personality-style
     play type, a short description, the summoner's signature champion, and
@@ -216,9 +216,9 @@ async def analyze_summoner_playstyle(
     )
 )
 async def get_mock_match_win_rankings(top: int = 10) -> str:
-    """Shows the global mock-match win leaderboard of LoLGPT(롤지피티).
+    """롤GPT(LoLGPT) 서비스의 툴로, 가상 대결 승리 횟수 글로벌 랭킹(리더보드)을 보여줍니다.
 
-    Every summoner-vs-summoner mock match simulated on LoLGPT counts toward
+    Every summoner-vs-summoner mock match simulated on 롤GPT(LoLGPT) counts toward
     the winner's total. This returns the current top summoners by accumulated
     mock-match wins.
 

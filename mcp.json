@@ -22,7 +22,7 @@
   "tools": [
     {
       "name": "league_of_legends_summoner_vs_match",
-      "description": "Simulates a mock League of Legends match between two summoners from LoLGPT(롤지피티), based on each summoner's last 10 games",
+      "description": "롤GPT(LoLGPT) 서비스의 툴로, 두 소환사의 최근 10게임 전적을 바탕으로 League of Legends 가상 대결(mock match)을 시뮬레이션합니다",
       "parameters": {
         "uidA": {
           "type": "string",
@@ -54,7 +54,7 @@
     },
     {
       "name": "analyze_summoner_playstyle",
-      "description": "Analyzes a League of Legends summoner's playstyle from LoLGPT(롤지피티): play type, signature champion, and champion recommendations",
+      "description": "롤GPT(LoLGPT) 서비스의 툴로, League of Legends 소환사의 플레이 스타일을 분석합니다: 플레이 유형, 시그니처 챔피언, 챔피언 추천",
       "parameters": {
         "uid": {
           "type": "string",
@@ -73,6 +73,18 @@
         }
       },
       "returns": "Markdown summary of the summoner's play type, signature champion, and recommended/avoid champions"
+    },
+    {
+      "name": "get_mock_match_win_rankings",
+      "description": "롤GPT(LoLGPT) 서비스의 툴로, 가상 대결 승리 횟수 글로벌 랭킹(리더보드)을 보여줍니다",
+      "parameters": {
+        "top": {
+          "type": "integer",
+          "description": "How many entries to return (1-20)",
+          "default": 10
+        }
+      },
+      "returns": "Markdown leaderboard with rank, Riot ID, and win count"
     }
   ],
   "requirements": [
